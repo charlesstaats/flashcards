@@ -1,0 +1,126 @@
+[
+  [
+    "Python: if / elif / else",
+    "if x > 0:\n    a()\nelif x < 0:\n    b()\nelse:\n    c()"
+  ],
+  [
+    "Python: conditional expression",
+    "y = a if x > 0 else b"
+  ],
+  [
+    "C-style languages (C, C++, Java, C#, JavaScript, ...): if / else if / else",
+    "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}"
+  ],
+  [
+    "C-style languages (C, C++, Java, C#, JavaScript, ...): ternary conditional operator",
+    "y = x > 0 ? a : b;"
+  ],
+  [
+    "C preprocessor: conditional compilation",
+    "#if X > 0\n...\n#elif X < 0\n...\n#else\n...\n#endif"
+  ],
+  [
+    "Go, Rust, Swift: if / else if / else (no parentheses, braces required)",
+    "if x > 0 {\n    a()\n} else if x < 0 {\n    b()\n} else {\n    c()\n}"
+  ],
+  [
+    "Go: if with an initializer statement",
+    "if v, ok := m[k]; ok {\n    use(v)\n}"
+  ],
+  [
+    "Rust: if let (pattern-matching conditional)",
+    "if let Some(v) = opt {\n    use_it(v);\n} else {\n    none();\n}"
+  ],
+  [
+    "Swift: guard (early-exit conditional)",
+    "guard let v = opt else {\n    return\n}"
+  ],
+  [
+    "Kotlin: when without a subject (if/else-if chain)",
+    "when {\n    x > 0 -> a()\n    x < 0 -> b()\n    else -> c()\n}"
+  ],
+  [
+    "Kotlin and Scala: if as an expression (no ternary operator)",
+    "val y = if (x > 0) a else b"
+  ],
+  [
+    "Bash / POSIX shell: if / elif / else",
+    "if [ \"$x\" -gt 0 ]; then\n  a\nelif [ \"$x\" -lt 0 ]; then\n  b\nelse\n  c\nfi"
+  ],
+  [
+    "Ruby: if / elsif / else",
+    "if x > 0\n  a\nelsif x < 0\n  b\nelse\n  c\nend"
+  ],
+  [
+    "Perl: if / elsif / else",
+    "if ($x > 0) {\n  a();\n} elsif ($x < 0) {\n  b();\n} else {\n  c();\n}"
+  ],
+  [
+    "PHP: if / elseif / else",
+    "if ($x > 0) {\n  a();\n} elseif ($x < 0) {\n  b();\n} else {\n  c();\n}"
+  ],
+  [
+    "Lua: if / elseif / else",
+    "if x > 0 then\n  a()\nelseif x < 0 then\n  b()\nelse\n  c()\nend"
+  ],
+  [
+    "MATLAB / Octave and Julia: if / elseif / else",
+    "if x > 0\n  a()\nelseif x < 0\n  b()\nelse\n  c()\nend"
+  ],
+  [
+    "Visual Basic (VB.NET, VBA): If / ElseIf / Else",
+    "If x > 0 Then\n    A()\nElseIf x < 0 Then\n    B()\nElse\n    C()\nEnd If"
+  ],
+  [
+    "Ada (also VHDL, PL/SQL): if / elsif / else",
+    "if X > 0 then\n   A;\nelsif X < 0 then\n   B;\nelse\n   C;\nend if;"
+  ],
+  [
+    "Fortran: if / else if / else",
+    "if (x > 0) then\n  call a()\nelse if (x < 0) then\n  call b()\nelse\n  call c()\nend if"
+  ],
+  [
+    "Haskell: guards",
+    "f x\n  | x > 0     = a\n  | x < 0     = b\n  | otherwise = c"
+  ],
+  [
+    "Common Lisp (also Emacs Lisp): cond",
+    "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (t (c)))"
+  ],
+  [
+    "Scheme / Racket: cond",
+    "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (else (c)))"
+  ],
+  [
+    "Clojure: cond",
+    "(cond\n  (> x 0) (a)\n  (< x 0) (b)\n  :else (c))"
+  ],
+  [
+    "Erlang: if expression",
+    "if\n  X > 0 -> a();\n  X < 0 -> b();\n  true -> c()\nend"
+  ],
+  [
+    "Elixir: cond",
+    "cond do\n  x > 0 -> a()\n  x < 0 -> b()\n  true -> c()\nend"
+  ],
+  [
+    "Prolog: if-then-else",
+    "(   X > 0 -> a\n;   X < 0 -> b\n;   c\n)"
+  ],
+  [
+    "Smalltalk: ifTrue:ifFalse: message",
+    "x > 0\n    ifTrue: [self a]\n    ifFalse: [self b]"
+  ],
+  [
+    "SQL: searched CASE expression",
+    "CASE\n  WHEN x > 0 THEN 'a'\n  WHEN x < 0 THEN 'b'\n  ELSE 'c'\nEND"
+  ],
+  [
+    "Excel / Google Sheets: nested IF",
+    "=IF(A1>0, \"a\", IF(A1<0, \"b\", \"c\"))"
+  ],
+  [
+    "GNU Make: conditional directive",
+    "ifeq ($(X),yes)\n...\nelse\n...\nendif"
+  ]
+]

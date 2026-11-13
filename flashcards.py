@@ -17,8 +17,7 @@ import textwrap
 from fractions import Fraction
 from pathlib import Path
 
-DEFAULT_DECK = Path(__file__).with_name(
-    "configure-ac-static-licenses-part0-flashcards.json")
+DEFAULT_DECK = Path(__file__).with_name("if-then-flashcards.json")
 
 # Showing a card rests it and its inverse for a random number of turns
 # in this range, inclusive.
@@ -102,11 +101,15 @@ def put(win, y, x, text, attr=0):
 
 
 def put_wrapped(win, y, x, text, attr=0):
-    """Write text wrapped to the window width; return the next free row."""
+    """Write text wrapped to the window width; return the next free row.
+
+    Line breaks and leading indentation are kept, so cards can hold code.
+    """
     width = max(win.getmaxyx()[1] - x - 2, 10)
-    for line in textwrap.wrap(text, width) or [""]:
-        put(win, y, x, line, attr)
-        y += 1
+    for paragraph in text.split("\n"):
+        for line in textwrap.wrap(paragraph, width) or [""]:
+            put(win, y, x, line, attr)
+            y += 1
     return y
 
 
