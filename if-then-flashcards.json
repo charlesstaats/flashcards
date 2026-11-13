@@ -7,22 +7,75 @@
     "Python: conditional expression",
     "y = a if x > 0 else b"
   ],
-  [
-    "C-style languages (C, C++, Java, C#, JavaScript, ...): if / else if / else",
-    "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}"
-  ],
-  [
-    "C-style languages (C, C++, Java, C#, JavaScript, ...): ternary conditional operator",
-    "y = x > 0 ? a : b;"
-  ],
+  {
+    "front": "C: if / else if / else",
+    "back": "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}",
+    "one_way": true
+  },
+  {
+    "front": "C++: if / else if / else",
+    "back": "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}",
+    "one_way": true
+  },
+  {
+    "front": "Java: if / else if / else",
+    "back": "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}",
+    "one_way": true
+  },
+  {
+    "front": "C#: if / else if / else",
+    "back": "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}",
+    "one_way": true
+  },
+  {
+    "front": "JavaScript: if / else if / else",
+    "back": "if (x > 0) {\n    a();\n} else if (x < 0) {\n    b();\n} else {\n    c();\n}",
+    "one_way": true
+  },
+  {
+    "front": "C: ternary conditional operator",
+    "back": "y = x > 0 ? a : b;",
+    "one_way": true
+  },
+  {
+    "front": "C++: ternary conditional operator",
+    "back": "y = x > 0 ? a : b;",
+    "one_way": true
+  },
+  {
+    "front": "Java: ternary conditional operator",
+    "back": "y = x > 0 ? a : b;",
+    "one_way": true
+  },
+  {
+    "front": "C#: ternary conditional operator",
+    "back": "y = x > 0 ? a : b;",
+    "one_way": true
+  },
+  {
+    "front": "JavaScript: ternary conditional operator",
+    "back": "y = x > 0 ? a : b;",
+    "one_way": true
+  },
   [
     "C preprocessor: conditional compilation",
     "#if X > 0\n...\n#elif X < 0\n...\n#else\n...\n#endif"
   ],
-  [
-    "Go, Rust, Swift: if / else if / else (no parentheses, braces required)",
-    "if x > 0 {\n    a()\n} else if x < 0 {\n    b()\n} else {\n    c()\n}"
-  ],
+  {
+    "front": "Go: if / else if / else",
+    "back": "if x > 0 {\n    a()\n} else if x < 0 {\n    b()\n} else {\n    c()\n}",
+    "one_way": true
+  },
+  {
+    "front": "Rust: if / else if / else",
+    "back": "if x > 0 {\n    a()\n} else if x < 0 {\n    b()\n} else {\n    c()\n}",
+    "one_way": true
+  },
+  {
+    "front": "Swift: if / else if / else",
+    "back": "if x > 0 {\n    a()\n} else if x < 0 {\n    b()\n} else {\n    c()\n}",
+    "one_way": true
+  },
   [
     "Go: if with an initializer statement",
     "if v, ok := m[k]; ok {\n    use(v)\n}"
@@ -39,10 +92,16 @@
     "Kotlin: when without a subject (if/else-if chain)",
     "when {\n    x > 0 -> a()\n    x < 0 -> b()\n    else -> c()\n}"
   ],
-  [
-    "Kotlin and Scala: if as an expression (no ternary operator)",
-    "val y = if (x > 0) a else b"
-  ],
+  {
+    "front": "Kotlin: if as an expression (no ternary operator)",
+    "back": "val y = if (x > 0) a else b",
+    "one_way": true
+  },
+  {
+    "front": "Scala: if as an expression (no ternary operator)",
+    "back": "val y = if (x > 0) a else b",
+    "one_way": true
+  },
   [
     "Bash / POSIX shell: if / elif / else",
     "if [ \"$x\" -gt 0 ]; then\n  a\nelif [ \"$x\" -lt 0 ]; then\n  b\nelse\n  c\nfi"
@@ -63,18 +122,35 @@
     "Lua: if / elseif / else",
     "if x > 0 then\n  a()\nelseif x < 0 then\n  b()\nelse\n  c()\nend"
   ],
-  [
-    "MATLAB / Octave and Julia: if / elseif / else",
-    "if x > 0\n  a()\nelseif x < 0\n  b()\nelse\n  c()\nend"
-  ],
+  {
+    "front": "MATLAB / Octave: if / elseif / else",
+    "back": "if x > 0\n  a()\nelseif x < 0\n  b()\nelse\n  c()\nend",
+    "one_way": true
+  },
+  {
+    "front": "Julia: if / elseif / else",
+    "back": "if x > 0\n  a()\nelseif x < 0\n  b()\nelse\n  c()\nend",
+    "one_way": true
+  },
   [
     "Visual Basic (VB.NET, VBA): If / ElseIf / Else",
     "If x > 0 Then\n    A()\nElseIf x < 0 Then\n    B()\nElse\n    C()\nEnd If"
   ],
-  [
-    "Ada (also VHDL, PL/SQL): if / elsif / else",
-    "if X > 0 then\n   A;\nelsif X < 0 then\n   B;\nelse\n   C;\nend if;"
-  ],
+  {
+    "front": "Ada: if / elsif / else",
+    "back": "if X > 0 then\n   A;\nelsif X < 0 then\n   B;\nelse\n   C;\nend if;",
+    "one_way": true
+  },
+  {
+    "front": "VHDL: if / elsif / else",
+    "back": "if X > 0 then\n   A;\nelsif X < 0 then\n   B;\nelse\n   C;\nend if;",
+    "one_way": true
+  },
+  {
+    "front": "PL/SQL: if / elsif / else",
+    "back": "if X > 0 then\n   A;\nelsif X < 0 then\n   B;\nelse\n   C;\nend if;",
+    "one_way": true
+  },
   [
     "Fortran: if / else if / else",
     "if (x > 0) then\n  call a()\nelse if (x < 0) then\n  call b()\nelse\n  call c()\nend if"
@@ -83,14 +159,26 @@
     "Haskell: guards",
     "f x\n  | x > 0     = a\n  | x < 0     = b\n  | otherwise = c"
   ],
-  [
-    "Common Lisp (also Emacs Lisp): cond",
-    "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (t (c)))"
-  ],
-  [
-    "Scheme / Racket: cond",
-    "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (else (c)))"
-  ],
+  {
+    "front": "Common Lisp: cond",
+    "back": "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (t (c)))",
+    "one_way": true
+  },
+  {
+    "front": "Emacs Lisp: cond",
+    "back": "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (t (c)))",
+    "one_way": true
+  },
+  {
+    "front": "Scheme: cond",
+    "back": "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (else (c)))",
+    "one_way": true
+  },
+  {
+    "front": "Racket: cond",
+    "back": "(cond ((> x 0) (a))\n      ((< x 0) (b))\n      (else (c)))",
+    "one_way": true
+  },
   [
     "Clojure: cond",
     "(cond\n  (> x 0) (a)\n  (< x 0) (b)\n  :else (c))"

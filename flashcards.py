@@ -3,7 +3,9 @@
 
 Reads a JSON file holding a list of [a, b] string pairs.  Each pair makes
 two cards, one cued by a and answered by b and its inverse, and the two are
-scored separately.
+scored separately.  An item may instead be an object
+{"front": a, "back": b, "one_way": true}, which makes only the card cued
+by a; with "one_way" false or absent it is the same as [a, b].
 
     ./flashcards.py [cards.json]
 """
@@ -30,7 +32,7 @@ class Card:
         self.answer = answer
         self.correct = 0
         self.incorrect = 0
-        self.inverse = None
+        self.inverse = None     # stays None for a one-way card
         self.eligible_at = 0    # first turn on which it may be shown again
 
     @property
@@ -42,10 +44,13 @@ class Deck:
     def __init__(self, pairs, rng=random):
         self.rng = rng
         self.cards = []
-        for a, b in pairs:
-            front, back = Card(a, b), Card(b, a)
-            front.inverse, back.inverse = back, front
-            self.cards += [front, back]
+        for a, b, one_way in pairs:
+            front = Card(a, b)
+            self.cards.append(front)
+            if not one_way:
+                back = Card(b, a)
+                front.inverse, back.inverse = back, front
+                self.cards.append(back)
         self.turn = 0
         self.correct = 0
         self.incorrect = 0
@@ -65,7 +70,9 @@ class Deck:
         worst = max(c.ratio for c in pool)
         card = self.rng.choice([c for c in pool if c.ratio == worst])
         rest = self.rng.randint(REST_MIN, REST_MAX)
-        card.eligible_at = card.inverse.eligible_at = self.turn + rest + 1
+        card.eligible_at = self.turn + rest + 1
+        if card.inverse:
+            card.inverse.eligible_at = card.eligible_at
         self.turn += 1
         return card
 
@@ -78,15 +85,37 @@ class Deck:
             self.incorrect += 1
 
 
+CARD_KEYS = {"front", "back", "one_way"}
+
+
 def load_pairs(path):
+    """Return the deck as a list of (front, back, one_way) triples."""
     with open(path, encoding="utf-8") as f:
-        pairs = json.load(f)
-    if not isinstance(pairs, list) or not pairs:
+        items = json.load(f)
+    if not isinstance(items, list) or not items:
         raise ValueError("expected a non-empty list of pairs")
-    for n, pair in enumerate(pairs, 1):
-        if (not isinstance(pair, list) or len(pair) != 2
-                or not all(isinstance(s, str) for s in pair)):
-            raise ValueError(f"item {n} is not a pair of strings")
+    pairs = []
+    for n, item in enumerate(items, 1):
+        if isinstance(item, dict):
+            unknown = item.keys() - CARD_KEYS
+            if unknown:
+                raise ValueError(f"item {n} has unknown keys: "
+                                 + ", ".join(sorted(unknown)))
+            a, b = item.get("front"), item.get("back")
+            one_way = item.get("one_way", False)
+            if not isinstance(a, str) or not isinstance(b, str):
+                raise ValueError(f"item {n} needs string \"front\" "
+                                 f"and \"back\"")
+            if not isinstance(one_way, bool):
+                raise ValueError(f"item {n}: \"one_way\" must be "
+                                 f"true or false")
+        elif (isinstance(item, list) and len(item) == 2
+                and all(isinstance(s, str) for s in item)):
+            (a, b), one_way = item, False
+        else:
+            raise ValueError(f"item {n} is not a pair of strings "
+                             f"or a card object")
+        pairs.append((a, b, one_way))
     return pairs
 
 
@@ -163,7 +192,7 @@ def run(win, deck):
 def main():
     parser = argparse.ArgumentParser(description="Terminal flash cards.")
     parser.add_argument("deck", nargs="?", default=DEFAULT_DECK,
-                        help="JSON file of [a, b] string pairs "
+                        help="JSON file of cards "
                              "(default: %(default)s)")
     args = parser.parse_args()
     try:
