@@ -169,6 +169,12 @@ def draw_screen(win, deck, card, revealed):
 
 def run(win, deck):
     curses.curs_set(0)
+    # curses.wrapper calls start_color(), after which ncurses paints the
+    # screen white on black unless told to keep the terminal's own colors.
+    try:
+        curses.use_default_colors()
+    except curses.error:
+        pass
     while True:
         card = deck.draw()
         revealed = False
